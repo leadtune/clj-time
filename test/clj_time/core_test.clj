@@ -185,6 +185,9 @@
     (is (= 385     (in-days p)))
     (is (= 9249    (in-hours p)))))
 
+(deftest test-days-between
+  (is (= 36524 (days-between (date-time 1900) (date-time 2000)))))
+
 (deftest test-within?
   (let [d1 (date-time 1985)
         d2 (date-time 1986)

@@ -67,7 +67,7 @@
    you need to print or parse date-times, see clj-time.format. If you need to
    ceorce date-times to or from other types, see clj-time.coerce."
   (:refer-clojure :exclude [extend])
-  (:import (org.joda.time ReadableDateTime DateTime DateMidnight DateTimeZone Period PeriodType Interval)))
+  (:import (org.joda.time ReadableDateTime DateTime DateMidnight DateTimeZone Period PeriodType Interval Days)))
 
 (def ^{:doc "DateTimeZone for UTC."}
       utc
@@ -356,6 +356,11 @@
   "Returns the number of standard years in the given Interval."
   [#^Interval in]
   (.getYears (.toPeriod in (years))))
+
+(defn days-between
+  "Returns the number of days between two given DateTimes"
+  [#^DateTime x #^DateTime y]
+  (.getDays (Days/daysBetween x y)))
 
 (defn within?
   "Returns true if the given Interval contains the given ReadableDateTime. Note that
