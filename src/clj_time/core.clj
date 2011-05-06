@@ -68,7 +68,7 @@
    ceorce date-times to or from other types, see clj-time.coerce."
   (:refer-clojure :exclude [extend])
   (:use [clojure.contrib.def :only (defvar)])
-  (:import (org.joda.time DateTime DateTimeZone Period Interval)))
+  (:import (org.joda.time DateTime DateTimeZone Period Interval Days)))
 
 (defvar utc
   (DateTimeZone/UTC)
@@ -293,6 +293,11 @@
   [#^Interval in]
   (int (/ (in-secs in) 60)))
 
+(defn days-between
+  "Returns the number of days between two given DateTimes"
+  [#^DateTime x #^DateTime y]
+  (.getDays (Days/daysBetween x y)))
+
 (defn within?
   "Returns true if the given Interval contains the given DateTime. Note that
    if the DateTime is exactly equal to the end of the interval, this function
@@ -314,5 +319,3 @@
 
 (defn mins-ago [d]
   (in-minutes (interval d (now))))
-
-

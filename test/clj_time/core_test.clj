@@ -118,6 +118,9 @@
     (is (= 1763822 (in-secs p)))
     (is (= 1763822000 (in-msecs p)))))
 
+(deftest test-days-between
+  (is (= 36524 (days-between (date-time 1900) (date-time 2000)))))
+
 (deftest test-within?
   (let [d1 (date-time 1985)
         d2 (date-time 1986)
